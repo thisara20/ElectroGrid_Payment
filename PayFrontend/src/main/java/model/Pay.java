@@ -91,9 +91,10 @@ public class Pay {
 				String ccv = Integer.toString(rs.getInt("ccv"));
 				String expireDate = rs.getString("expireDate");
 
-				// Add a row into the html table
+				// Add into the html table
 				
-				 
+				output += "<tr><td><input id='hidPayIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + payID
+						 + "'>" + payDate + "</td>";
 				output += "<td>" + name  + "</td>";
 				output += "<td>" + email + "</td>";
 				output += "<td>" + amount + "</td>";
