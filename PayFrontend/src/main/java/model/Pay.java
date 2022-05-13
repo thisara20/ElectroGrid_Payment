@@ -38,8 +38,8 @@ public class Pay {
 			// create a prepared statement
 			String query = " insert into payment(`payID`,`payDate`, `name`, `email`,`amount`, `accNo`,`ccv`, `expireDate` )" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
+			 
 			// binding values
-
 			preparedStmt.setInt(1, 0);
 			preparedStmt.setString(2, payDate);
 			preparedStmt.setString(3, name);
@@ -54,10 +54,14 @@ public class Pay {
 			preparedStmt.execute();
 			con.close();
 
+			String newPays = readPay();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newPays + "\"}";
+			 
 			output = "Inserted successfully";
 
 		} catch (Exception e) {
-			output = "Error while inserting";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -143,9 +147,15 @@ public class Pay {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
+			
+			String newPays = readPay();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newPays + "\"}";
+			 
 			output = "Updated successfully";
+			
 		} catch (Exception e) {
-			output = "Error while updating the payment.";
+			output = "{\"status\":\"error\", \"data\": \"Error while updating the payment.";
 			System.err.println(e.getMessage());
 		}
 		return output;
