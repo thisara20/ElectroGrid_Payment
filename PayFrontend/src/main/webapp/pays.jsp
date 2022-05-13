@@ -44,6 +44,7 @@
  <%
  Pay payObj = new Pay();
  out.print(payObj.readPay());
+  
  %>
 </div>
 </div> </div> </div>
