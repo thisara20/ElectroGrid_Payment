@@ -69,7 +69,7 @@ if (status == "success")
     
  } else if (status == "error")
  {
-	//error while saving
+	//if the response status is error
  $("#alertError").text("Error while saving.");
  $("#alertError").show();
  } else
