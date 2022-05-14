@@ -71,7 +71,7 @@ public class PaysAPI extends HttpServlet {
 				 request.getParameter("name"),
 				request.getParameter("email"),
 				request.getParameter("amount"),
-		        request.getParameter("accno"),
+		        request.getParameter("accNo"),
 		       request.getParameter("ccv"),
 		        request.getParameter("expireDate"));
 		
