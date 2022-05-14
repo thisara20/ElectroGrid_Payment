@@ -84,16 +84,21 @@ public class PaysAPI extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//parameter map
 		Map paras = getParasMap(request);
 		 
+		//getting values from the map and sending to update function
 		String output = payObj.updatePay(paras.get("hidPayIDSave").toString(),
-			request.getParameter("payDate"),
-		    request.getParameter("name"),
-			request.getParameter("email"),
-			request.getParameter("amount"),
-	        request.getParameter("accno"),
-	       request.getParameter("ccv"),
-	        request.getParameter("expireDate"));
+			paras.get("payDate").toString(),
+			paras.get("name").toString(),
+			paras.get("email").toString(),
+			paras.get("amount").toString(),
+			paras.get("accno").toString(),
+			paras.get("ccv").toString(),
+			paras.get("expireDate").toString());
+		
+		//sending the output to client
 		response.getWriter().write(output);
 	}
 
@@ -101,7 +106,15 @@ public class PaysAPI extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		//parameter map
+				Map paras = getParasMap(request);
+
+				//getting values from the map and sending to delete function
+				String output = payObj.deletePay(	paras.get("payID").toString());
+				
+				//sending the output to client
+				response.getWriter().write(output);
 	}
 
 }

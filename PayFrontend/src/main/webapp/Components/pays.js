@@ -1,11 +1,13 @@
 $(document).ready(function()
 {
-if ($("#alertSuccess").text().trim() == "")
+ if ($("#alertSuccess").text().trim() == "")
  {
     $("#alertSuccess").hide();
  }
+ 
  $("#alertError").hide();
-});
+ 
+})
 
 // SAVE ============================================
 $(document).on("click", "#btnSave", function(event)
@@ -20,9 +22,9 @@ $(document).on("click", "#btnSave", function(event)
 var status = validatePayForm();
 if (status != true)
  {
- $("#alertError").text(status);
- $("#alertError").show();
- return;
+    $("#alertError").text(status);
+    $("#alertError").show();
+   return;
  }
  
 // if hidPayIDSave value is null set as POST else set as PUT
@@ -35,7 +37,7 @@ if (status != true)
  dataType : "text",
  complete : function(response, status)
   {
- onPaySaveComplete(response.responseText, status);
+     onPaySaveComplete(response.responseText, status);
   }
  }); 
 
@@ -55,7 +57,7 @@ if (status == "success")
  $("#alertSuccess").show();
  
  //load data in json to html
- $("#divItemsGrid").html(resultSet.data);
+ $("#divPaysGrid").html(resultSet.data);
  
   //if json status error
  } else if (resultSet.status.trim() == "error") 
@@ -77,14 +79,14 @@ if (status == "success")
  $("#alertError").show();
  }
  //reset the pay form
-$("#hidItemIDSave").val("");
- $("#formItem")[0].reset();
+$("#hidPayIDSave").val("");
+ $("#formPay")[0].reset();
 }
 
 // UPDATE==========================================
 $(document).on("click", ".btnUpdate", function(event)
 {
-	//get payID from itemid attribute in pdate btn
+	//get payID from itemid attribute in update btn
  $("#hidPayIDSave").val($(this).data('payid')); 
  
   //get data from table data element 
@@ -114,7 +116,7 @@ $(document).on("click", ".btnRemove", function(event)
  });
 });
 
-// onItemDeleteComplete; after completing delete request
+// onpayDeleteComplete; after completing delete request
 	
 function onPayDeleteComplete(response, status)
 {
@@ -126,9 +128,12 @@ if (status == "success")
           //if json status is successful
  if (resultSet.status.trim() == "success")
  {
- $("#alertSuccess").text("Successfully payment deleted.");
+ $("#alertSuccess").text("Payment deleted Successfully.");
  $("#alertSuccess").show();
+ 
  $("#divPaysGrid").html(resultSet.data);
+ 
+ 
  } else if (resultSet.status.trim() == "error")
  {
  $("#alertError").text(resultSet.data);
@@ -187,27 +192,29 @@ if ($("#accNo").val().trim() == "")
  return "Insert Account Number.";
  }
  
- // expiredate
-if ($("#expireDate").val().trim() == "")
- {
- return "Insert Expire date.";
- }
+ 
  
  // CCV------------------------------
 if ($("#ccv").val().trim() == "")
  {
  return "Insert ccv.";
  }
+ 
+ 
 // is numerical value
 var tmpCcv = $("#ccv").val().trim();
 if (!$.isNumeric(tmpCcv ))
  {
- return "Insert a numerical value for Amount.";
+ return "Insert a numerical value for CCV.";
  }
 // convert to decimal price
- $("#ccv").val(parseInteger(tmpCcv));
+ $("#ccv").val(parseInt(tmpCcv));
  
- 
+  // expiredate
+if ($("#expireDate").val().trim() == "")
+ {
+ return "Insert Expire date.";
+ }
  
 return true;
 }

@@ -8,15 +8,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Payment Management</title>
-<link rel="stylesheet" href="Views/bootstrap.min.css">
-<script src="Components/jquery-3.2.1.min.js"></script>
-<script src="Components/pays.js"></script>
-
+   
+  <link rel="stylesheet" href="Views/bootstrap.min.css">
+  <script src="Components/jquery-3.2.1.min.js"></script>
+  <script src="Components/pays.js"></script>
+  <title>Payment Management</title>
 </head>
 <body>
-<div class="container"><div class="row"><div class="col-6">
-<h1>Payment Management V10.1</h1>
+
+<div class="container">
+   <div class="row">
+      <div class="col">
+           <h1>Payment Management</h1>
 
 	<form id="formPay" name="formPay" method="post" action="pays.jsp">
 
@@ -32,18 +35,22 @@
 			class="form-control form-control-sm"> <br>CCV: <input
 			id="ccv" name="ccv" type="text" class="form-control form-control-sm">
 		<br>Card Expire Date: <input id="expireDate" name="expireDate"
-			type="text" class="form-control form-control-sm"> <br> <input
+			type="text" class="form-control form-control-sm"> <br> 
+			<input
 			id="btnSave" name="btnSave" type="button" value="Save"
-			class="btn btn-primary"> <input type="hidden"
+			class="btn btn-primary"> 
+			
+			<input type="hidden"
 			id="hidPayIDSave" name="hidPayIDSave" value="">
 	</form>
+	<br>
 <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>
 <br>
-<div id="divItemsGrid">
+<div id="divPaysGrid">
  <%
- Pay payObj = new Pay();
- out.print(payObj.readPay());
+ Pay pay = new Pay();
+ out.print(pay.readPay());
   
  %>
 </div>
